@@ -17,6 +17,13 @@ bool check() {
 	return true;
 }
 
+void reset() {
+	int i;
+	for(i = 0; i < sn; ++i) {
+		sticksB[i] = true;
+	}
+}
+
 /*
    *params no: number original
  */
@@ -70,6 +77,7 @@ int main() {
 			}
 			if(test(len, lenSum/len))
 				break;
+			reset();
 		}
 		printf("%d\n", len);
 	}
