@@ -1,36 +1,46 @@
 #include<stdio.h>
 #include<stdbool.h>
+#include<math.h>
 int num[4];
 int order[3];
 bool divideZero = false;
-double Caculate(int n) {
-	if(n == 3)
-		return num[3];
-	switch (order[n]) {
+double Ca(double a, double b, int type) {
+	//if(n == 3)
+	//	return num[3];
+	//float c = Caculate(n + 1);
+	switch (type) {
 		case 1:
-			return num[n] + Caculate(n + 1);
+			return a + b;
 		case 2:
-			return num[n] - Caculate(n + 1);
+			return a - b;
 		case 3:
-			return num[n] * Caculate(n + 1);
+			return a * b;
 		case 4:
-			if(Caculate(n + 1) == 0) {
+			if(!b) {
 				divideZero = true;
 				return 0;
-			} else return num[n] / Caculate(n + 1);
+			} else return a / b;
 	}
 
 }
 
+bool CAC() {// Caculate and check
+	if(fabs(Ca(Ca(Ca(num[0], num[1], order[0]), num[2], order[1]), num[3], order[2]) - 24) < 0.0001 && !divideZero)
+		return true;
+	divideZero = false;
+	if(fabs(Ca(Ca(num[0], num[1], order[0]), Ca(num[2], num[3], order[2]), order[1]) - 24) < 0.0001 && !divideZero)
+		return true;
+	divideZero = false;
+	if(fabs(Ca(num[0], Ca(Ca(num[1], num[2], order[1]), num[3], order[2]), order[0]) - 24) < 0.0001 && !divideZero)
+		return true;
+	divideZero = false;
+	return false;
+}
 
 bool ReOrder2(int n) {
 	if(n == 3) {
-		//printf("%d %d %d %d, %d %d %d, %f\n", num[0], num[1], num[2], num[3], order[0], order[1], order[2], Caculate(0));
-		if((int)Caculate(0) == 24 && !divideZero) {
-			divideZero = false;
+		if(CAC()) 
 			return true;
-		}
-		divideZero = false;
 		return false;
 	}
 	int i;
