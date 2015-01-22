@@ -74,7 +74,7 @@ int main() {
 				int dh = ph - platforms[j].h;
 				if(j == n + 1) {
 					if(dh + leftMinTime[i] < min) min = dh + leftMinTime[i];
-					if(dh < rightMinTime[i] < min) min = dh + rightMinTime[i];
+					if(dh + rightMinTime[i] < min) min = dh + rightMinTime[i];
 					continue;
 				}
 				if(!getLeft && platforms[j].x1 <= px1 && platforms[j].x2 >= px1) {
