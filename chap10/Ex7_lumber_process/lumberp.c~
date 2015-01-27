@@ -1,11 +1,11 @@
 #include<stdio.h>
 
-int lumbers[10000 + 10];
+int lumbers[10000];
 
 int cmp(const void * a, const void * b) {
 	return * ((int *)a) - * ((int *)b);
 }
-/*
+
 int MbSearch(int j, int *l, int s, int n) {
 	if(s == n)
 		return s;
@@ -21,7 +21,7 @@ int MbSearch(int j, int *l, int s, int n) {
 	else if(l[mid] < j) 
 		return MbSearch(j, l, mid, n);
 	else return MbSearch(j, l, s, mid);
-}*/
+}
 
 int main() {
 	freopen("in.txt", "r", stdin);
@@ -45,10 +45,8 @@ int main() {
 	int nBeg = 0, nEnd = maxLen, nMid;
 	while(nBeg <= nEnd) {
 		nMid = (nBeg + nEnd) / 2;
-		if(nMid == 0) { 
-			nBeg = nMid + 1;
-			continue;
-		}
+		if(nMid == 0)
+			break;
 		quan = 0;
 		for(i = n - 1; i >= 0; --i) {
 			quan += lumbers[i] / nMid;

@@ -1,0 +1,4 @@
+Always make mistakes in some special inputs and dealing with the bounds.
+
+Do think carefully when you set code the boundary part, maybe write it down
+and cope with very possible inputs.
